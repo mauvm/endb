@@ -113,7 +113,7 @@ class Endb extends EventEmitter {
   /**
      * Deletes an element (key and value) from the database.
      * @param {string} key The key of an element.
-     * @returns {Promise<true>} Whether or not, the key has been deleted.
+     * @returns {Promise<void>} undefined
      * @example
      * Endb.delete('key').then(console.log).catch(console.error);
      */
@@ -121,7 +121,8 @@ class Endb extends EventEmitter {
     if (key === null || typeof key !== 'string') return null;
     key = this[_prefixKey](key);
     return Promise.resolve()
-      .then(() => this.options.store.delete(key));
+      .then(() => this.options.store.delete(key))
+      .then(() => undefined);
   }
 
   /**
